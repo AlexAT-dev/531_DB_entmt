@@ -1,5 +1,5 @@
-select * from Employers_Type;
-select * from Employers;
+select * from Employees_Type;
+select * from Employees;
 select * from Clients;
 select * from Halls;
 select * from Entmts;

@@ -1,2 +1,2 @@
-INSERT INTO Employers_Type VALUES (1, "test");
+INSERT INTO Employees_Type (id, name) VALUES (2, 'test2');
    
