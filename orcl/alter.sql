@@ -1,18 +1,18 @@
---1 Вилучити будь-який зв’язок між таблицями вашої БД.
+--1 Р’РёР»СѓС‡РёС‚Рё Р±СѓРґСЊ-СЏРєРёР№ Р·РІвЂ™СЏР·РѕРє РјС–Р¶ С‚Р°Р±Р»РёС†СЏРјРё РІР°С€РѕС— Р‘Р”.
 alter table Employees
     drop constraint employer_type;
    
---2 Вилучити і змінити характеристики поля у одній з таблиць вашої БД.
+--2 Р’РёР»СѓС‡РёС‚Рё С– Р·РјС–РЅРёС‚Рё С…Р°СЂР°РєС‚РµСЂРёСЃС‚РёРєРё РїРѕР»СЏ Сѓ РѕРґРЅС–Р№ Р· С‚Р°Р±Р»РёС†СЊ РІР°С€РѕС— Р‘Р”.
 alter table Clients
     drop column phonenum;
 alter table Clients
     modify regdate date not null;
 
---3 Змінити поле у одній з таблиць вашої БД.
+--3 Р—РјС–РЅРёС‚Рё РїРѕР»Рµ Сѓ РѕРґРЅС–Р№ Р· С‚Р°Р±Р»РёС†СЊ РІР°С€РѕС— Р‘Р”.
 alter table Halls
     rename column name to name_new;
 
---4 Додати поле і нове обмеження унікальності до будь-якої таблиці вашої БД
+--4 Р”РѕРґР°С‚Рё РїРѕР»Рµ С– РЅРѕРІРµ РѕР±РјРµР¶РµРЅРЅСЏ СѓРЅС–РєР°Р»СЊРЅРѕСЃС‚С– РґРѕ Р±СѓРґСЊ-СЏРєРѕС— С‚Р°Р±Р»РёС†С– РІР°С€РѕС— Р‘Р”
 alter table Halls
     add hall_new varchar(15);
 alter table Halls
@@ -20,12 +20,10 @@ alter table Halls
 alter table Halls 
     add constraint uq_new unique (hall_new, unique_num);
     
---5 Змінити тип обмеження цілісності для зв’язку у одній з таблиць вашої БД
+--5 Р—РјС–РЅРёС‚Рё С‚РёРї РѕР±РјРµР¶РµРЅРЅСЏ С†С–Р»С–СЃРЅРѕСЃС‚С– РґР»СЏ Р·РІвЂ™СЏР·РєСѓ Сѓ РѕРґРЅС–Р№ Р· С‚Р°Р±Р»РёС†СЊ РІР°С€РѕС— Р‘Р”
 alter table Halls_Entmts
     drop constraint id_entmt;
 alter table Halls_Entmts
     add constraint id_entmt
         foreign key (id_entmt)
             references Entmts(id);
-
-    
