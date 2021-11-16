@@ -15,7 +15,9 @@ create table Employees(
     experience int,
     address varchar(200),
     employer_type int,
-    foreign key (employer_type) references Employees_Type(id) on delete cascade
+    constraint employer_type
+        foreign key (employer_type)
+            references Employees_Type(id) on delete cascade
 );
 
 create table Clients(
@@ -46,27 +48,37 @@ create table Halls_Entmts(
 	id int primary key not null,
     price float,
     id_hall int,
-    foreign key (id_hall) references Halls(id) on delete cascade,
+    constraint id_hall
+        foreign key (id_hall)
+            references Halls(id) on delete cascade,
     id_entmt int,
-    foreign key (id_entmt) references Entmts(id) on delete cascade,
+    constraint id_entmt
+        foreign key (id_entmt)
+            references Entmts(id) on delete cascade,
     id_employer int,
-    foreign key (id_employer) references Employees(id) on delete cascade
+    constraint id_employer
+        foreign key (id_employer)
+            references Employees(id) on delete cascade
 );
 
 create table Booking(
 	id int primary key not null,
     booking_date date,
-    booking_time varchar(5),
+    booking_time timestamp,
     visited int,
     paid int,
     id_client int,
-    foreign key (id_client) references Clients(id) on delete cascade,
+    constraint id_client
+        foreign key (id_client)
+            references Clients(id) on delete cascade,
     id_hall_entmt int,
-    foreign key (id_hall_entmt) references Halls_Entmts(id) on delete cascade
+    constraint id_hall_entmt
+        foreign key (id_hall_entmt)
+            references Halls_Entmts(id) on delete cascade
 );
 
 create table Timetable(
 	day_of_week int primary key not null,
-	time_start varchar(5),
-    time_end varchar(5)
+	time_start timestamp,
+    time_end timestamp
 );
