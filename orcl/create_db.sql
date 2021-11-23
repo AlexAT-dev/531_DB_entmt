@@ -1,3 +1,4 @@
+--TABLES
 create table Employees_Type(
     id int primary key not null,
     name varchar(30)
@@ -82,3 +83,47 @@ create table Timetable(
 	time_start timestamp,
     time_end timestamp
 );
+
+--SEQUENCES
+create sequence employees_type_seq
+  minvalue 1
+  start with 1
+  increment by 1
+  cache 20;
+
+create sequence employees_seq
+  minvalue 1
+  start with 1
+  increment by 1
+  cache 20;
+  
+create sequence clients_seq
+  minvalue 1
+  start with 1
+  increment by 1
+  cache 20;
+  
+create sequence halls_seq
+  minvalue 1
+  start with 1
+  increment by 1
+  cache 20;
+
+create sequence entmts_seq
+  minvalue 1
+  start with 1
+  increment by 1
+  cache 20;
+
+create sequence halls_entmts_seq
+  minvalue 1
+  start with 1
+  increment by 1
+  cache 20;
+
+create sequence booking_seq
+  minvalue 1
+  start with 1
+  increment by 1
+  cache 20;
+
