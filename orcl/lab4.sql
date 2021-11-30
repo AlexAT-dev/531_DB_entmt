@@ -33,7 +33,6 @@ insert into Entmts select * from EntmtsLoad;
 drop table EntmtsLoad;
 select * from Entmts;
 
-
 --3. Виконати модифікацію значень у будь-яких таблицях БД для одного поля та групи полів за певною умовою.
   --одне поле:
 update Employees_Type set name = 'type_new' where id = 1;
@@ -46,4 +45,5 @@ delete from Employees_Type where name = 'type_new';
   --група записів:
 delete from Employees_Type where name in ('type2', 'type3');
   --усі записи:
+truncate table Employees_Type;
 truncate table Employees_Type;
