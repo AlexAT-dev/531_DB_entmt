@@ -1,7 +1,7 @@
---1. Заповнити таблиці вашої БД в режимі одиночного і групового доповнення.
-  --одиночне:
+--1. Р—Р°РїРѕРІРЅРёС‚Рё С‚Р°Р±Р»РёС†С– РІР°С€РѕС— Р‘Р” РІ СЂРµР¶РёРјС– РѕРґРёРЅРѕС‡РЅРѕРіРѕ С– РіСЂСѓРїРѕРІРѕРіРѕ РґРѕРїРѕРІРЅРµРЅРЅСЏ.
+  --РѕРґРёРЅРѕС‡РЅРµ:
 insert into Employees_Type values (employees_type_seq.nextval, 'type1');
-  --групове:
+  --РіСЂСѓРїРѕРІРµ:
 insert all
     into Employees_Type values (employees_type_seq.nextval, 'type2')
     into Employees_Type values (employees_type_seq.nextval+1, 'type3')
@@ -9,24 +9,41 @@ insert all
     into Employees_Type values (employees_type_seq.nextval+3, 'type5')
 select * from dual;
 
---2. Створити файли з даними (будь-якого сумісного типу) і заповнити ними решту таблиць баз даних шляхом імпорту.
-load data
-infile 'C:\Users\User\Desktop\Entmts.txt' 
-into table Entmts
-fields terminated by ","
-(id, name, info);
+--2. РЎС‚РІРѕСЂРёС‚Рё С„Р°Р№Р»Рё Р· РґР°РЅРёРјРё (Р±СѓРґСЊ-СЏРєРѕРіРѕ СЃСѓРјС–СЃРЅРѕРіРѕ С‚РёРїСѓ) С– Р·Р°РїРѕРІРЅРёС‚Рё РЅРёРјРё СЂРµС€С‚Сѓ С‚Р°Р±Р»РёС†СЊ Р±Р°Р· РґР°РЅРёС… С€Р»СЏС…РѕРј С–РјРїРѕСЂС‚Сѓ.
+create or replace directory data_load as 'D:\\OracleDatabase\\load\\';
+create table EntmtsLoad(
+	id int,
+    name varchar(50),
+    info varchar(255)
+)
+organization external(
+    type ORACLE_LOADER
+    default directory data_load
+    access parameters(
+        records delimited by newline
+        nobadfile
+        nologfile
+        fields terminated by ','
+        missing field values are null
+    )
+    location ('Entmts.txt')
+);
 
---3. Виконати модифікацію значень у будь-яких таблицях БД для одного поля та групи полів за певною умовою.
-  --одне поле:
+insert into Entmts select * from EntmtsLoad;
+drop table EntmtsLoad;
+select * from Entmts;
+
+
+--3. Р’РёРєРѕРЅР°С‚Рё РјРѕРґРёС„С–РєР°С†С–СЋ Р·РЅР°С‡РµРЅСЊ Сѓ Р±СѓРґСЊ-СЏРєРёС… С‚Р°Р±Р»РёС†СЏС… Р‘Р” РґР»СЏ РѕРґРЅРѕРіРѕ РїРѕР»СЏ С‚Р° РіСЂСѓРїРё РїРѕР»С–РІ Р·Р° РїРµРІРЅРѕСЋ СѓРјРѕРІРѕСЋ.
+  --РѕРґРЅРµ РїРѕР»Рµ:
 update Employees_Type set name = 'type_new' where id = 1;
-  --група полів:
+  --РіСЂСѓРїР° РїРѕР»С–РІ:
 update Employees_Type set name = 'type_new_new' where id > 3;
 
---4. Видалити записи (один запис, групу записів, усі записи) з будь-яких таблиць вашої БД.
-  --один запис:
+--4. Р’РёРґР°Р»РёС‚Рё Р·Р°РїРёСЃРё (РѕРґРёРЅ Р·Р°РїРёСЃ, РіСЂСѓРїСѓ Р·Р°РїРёСЃС–РІ, СѓСЃС– Р·Р°РїРёСЃРё) Р· Р±СѓРґСЊ-СЏРєРёС… С‚Р°Р±Р»РёС†СЊ РІР°С€РѕС— Р‘Р”.
+  --РѕРґРёРЅ Р·Р°РїРёСЃ:
 delete from Employees_Type where name = 'type_new';
-  --група записів:
+  --РіСЂСѓРїР° Р·Р°РїРёСЃС–РІ:
 delete from Employees_Type where name in ('type2', 'type3');
-  --усі записи:
+  --СѓСЃС– Р·Р°РїРёСЃРё:
 truncate table Employees_Type;
-
