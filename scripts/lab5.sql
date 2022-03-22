@@ -24,8 +24,7 @@ select * from T1
     minus select * from T2; 
     
 --4. Побудувати запит на виконання декартового добутку двох таблиць. 
-select * from T1
-    cross join T2;
+select * from T1, T2;
 
 drop table T1;
 drop table T2;

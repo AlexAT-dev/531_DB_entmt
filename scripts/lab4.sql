@@ -1,12 +1,12 @@
 --1. Заповнити таблиці вашої БД в режимі одиночного і групового доповнення.
   --одиночне:
-insert into Employees_Type values (employees_type_seq.nextval, 'type1');
+insert into Employees_Type values (1, 'type1');
   --групове:
 insert all
-    into Employees_Type values (employees_type_seq.nextval, 'type2')
-    into Employees_Type values (employees_type_seq.nextval+1, 'type3')
-    into Employees_Type values (employees_type_seq.nextval+2, 'type4')
-    into Employees_Type values (employees_type_seq.nextval+3, 'type5')
+    into Employees_Type values (2, 'type2')
+    into Employees_Type values (3, 'type3')
+    into Employees_Type values (4, 'type4')
+    into Employees_Type values (5, 'type5')
 select * from dual;
 
 --2. Створити файли з даними (будь-якого сумісного типу) і заповнити ними решту таблиць баз даних шляхом імпорту.
