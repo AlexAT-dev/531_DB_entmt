@@ -48,6 +48,7 @@ create table Entmts(
 create table Halls_Entmts(
 	id int primary key not null,
     price float,
+	discount int,
     id_hall int,
     constraint id_hall
         foreign key (id_hall)
