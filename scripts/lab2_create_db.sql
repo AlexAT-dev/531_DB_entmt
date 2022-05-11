@@ -18,7 +18,7 @@ create table Employees(
     employer_type int,
     constraint employer_type
         foreign key (employer_type)
-            references Employees_Type(id) on delete cascade
+            references Employees_Type(id) 
 );
 
 create table Clients(
@@ -52,15 +52,15 @@ create table Halls_Entmts(
     id_hall int,
     constraint id_hall
         foreign key (id_hall)
-            references Halls(id) on delete cascade,
+            references Halls(id),
     id_entmt int,
     constraint id_entmt
         foreign key (id_entmt)
-            references Entmts(id) on delete cascade,
+            references Entmts(id),
     id_employer int,
     constraint id_employer
         foreign key (id_employer)
-            references Employees(id) on delete cascade
+            references Employees(id)
 );
 
 create table Booking(
@@ -72,11 +72,11 @@ create table Booking(
     id_client int,
     constraint id_client
         foreign key (id_client)
-            references Clients(id) on delete cascade,
+            references Clients(id),
     id_hall_entmt int,
     constraint id_hall_entmt
         foreign key (id_hall_entmt)
-            references Halls_Entmts(id) on delete cascade
+            references Halls_Entmts(id)
 );
 
 create table Timetable(
